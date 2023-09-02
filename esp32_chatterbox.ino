@@ -105,17 +105,4 @@ void setup() {
 void loop() {
   dnsServer.processNextRequest();
   server.handleClient();
-
-  // type a "c" in the serial monitor to clean the database
-  if (Serial.available() > 0) {
-    int incomingByte = Serial.read();
-    if(incomingByte == 99){
-      Serial.println("overwriting file...");
-      File file_write = SPIFFS.open(filename, FILE_WRITE);
-      file_write.print("");
-      file_write.close();      
-      Serial.println("file overwritten :)");
-    }
-  }
-  
 }
