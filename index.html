@@ -30,14 +30,18 @@
 				fetch('./posts')
 					.then(r=>r.text())
 					.then((t)=>{
-						$('l').innerHTML=t
-							.split('\u001e')
-							.map(s=>s.replace(/</g,'&lt;'))
-							.map(s=>s.replace(/>/g,'&gt;'))
-							.map(s=>s.replace(/\n/g,'<br>'))
-							.map(s=>'<p>'+ s +'</p>')
-							.join('');
-						ready=true;
+						if(t!=''){
+							$('l').innerHTML=t
+								.split('\u001e')
+								.map(s=>s.replace(/</g,'&lt;'))
+								.map(s=>s.replace(/>/g,'&gt;'))
+								.map(s=>s.replace(/\n/g,'<br>'))
+								.map(s=>'<p>'+ s +'</p>')
+								.join(' ');
+							ready=true;
+						}else{					
+							$('l').innerHTML='<div style="text-align: center;"><b>Sin mensajes</b></div>'
+						}
 					})
 					.catch((e)=>{
 						log(e);
@@ -76,6 +80,7 @@
 				word-wrap:break-word;
 				border-left: 2px solid #4CAF50;
 				background-color: rgba(0,0,0,0.1);
+				border-radius: 20px;
 			}
 			textarea{
 				width: 100%;
@@ -123,6 +128,10 @@
 			}
 		</style>
 	</body>
+
+
+</html>
+
 
 
 </html>
